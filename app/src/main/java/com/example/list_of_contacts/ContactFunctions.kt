@@ -3,7 +3,7 @@ package com.example.list_of_contacts
 import android.content.ContentValues
 import android.provider.BaseColumns
 
-fun addContact(dbHelper: ContactDbHelper, name: String, phone: String) {
+suspend fun addContact(dbHelper: ContactDbHelper, name: String, phone: String) {
     val db = dbHelper.writableDatabase
     val values = ContentValues().apply {
         put(ContactContract.ContactEntry.COLUMN_NAME_NAME, name)
@@ -17,7 +17,7 @@ fun getAllContacts(dbHelper: ContactDbHelper) : List<Contact> {
     val db = dbHelper.readableDatabase
     val projection = arrayOf(BaseColumns._ID, ContactContract.ContactEntry.COLUMN_NAME_NAME, ContactContract.ContactEntry.COLUMN_NAME_PHONE)
     val cursor = db.query(
-        ContactContract.ContactEntry.TABLE_NAME,null,null,null,null,null,null
+        ContactContract.ContactEntry.TABLE_NAME,projection,null,null,null,null,null
     )
     val contacts = mutableListOf<Contact>()
     with(cursor) {

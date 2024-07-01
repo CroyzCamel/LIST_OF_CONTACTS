@@ -14,34 +14,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.list_of_contacts.ui.theme.List_of_contactsTheme
 
 class MainActivity : ComponentActivity() {
+    private lateinit var dbHelper: ContactDbHelper
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        dbHelper = ContactDbHelper(this@MainActivity)
         enableEdgeToEdge()
         setContent {
             List_of_contactsTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+               ContactApp(dbHelper = dbHelper)
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    List_of_contactsTheme {
-        Greeting("Android")
-    }
-}

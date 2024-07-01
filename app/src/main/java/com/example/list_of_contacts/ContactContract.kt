@@ -12,7 +12,7 @@ object ContactContract {
     const val SQL_CREATE_ENTRIES =
         "CREATE TABLE ${ContactEntry.TABLE_NAME} (" +
                 "${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "${ContactEntry.COLUMN_NAME_PHONE} TEXT," +
+                "${ContactEntry.COLUMN_NAME_NAME} TEXT," +
                 "${ContactEntry.COLUMN_NAME_PHONE} TEXT)"
 
     const val SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS ${ContactEntry.TABLE_NAME}"
